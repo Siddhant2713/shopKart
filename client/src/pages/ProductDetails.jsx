@@ -2,6 +2,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../services/api';
+import Navbar from '../components/Navbar';
+import ProductImage from '../components/ProductImage';
+import StockLabel from '../components/StockLabel';
+import WishlistButton from '../components/WishlistButton';
 
 function ProductDetails() {
     const { id } = useParams();
@@ -25,20 +29,32 @@ function ProductDetails() {
         fetchProduct();
     }, [id]);
 
-    if (loading) return <p>Loading product...</p>;
-    if (error) return <p>{error}</p>;
-    if (!product) return null;
-
     return (
-        <div>
-            <Link to="/products">← Back to Products</Link>
-            <img src={product.image} alt={product.name} style={{ width: '400px' }} />
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-            <p>₹{product.price}</p>
-            <p>{product.category}</p>
-            <p>{product.stock > 0 ? `${product.stock} units left` : 'Out of stock'}</p>
-            <button>Add to Cart</button>
+        <div className="min-h-svh bg-cream text-ink">
+            <Navbar />
+            <main className="mx-auto max-w-[1100px] px-12 pb-16 pt-8">
+                <Link to="/products" className="mb-6 inline-block text-sm font-bold text-brand hover:text-brand-darker">
+                    ← Back to products
+                </Link>
+
+                {loading && <p className="text-ink-muted">Loading product...</p>}
+                {!loading && error && <p className="text-red-700">{error}</p>}
+                {!loading && !error && product && (
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-start gap-12">
+                        <ProductImage product={product} className="aspect-square w-full rounded-[20px]" />
+                        <div className="flex flex-col gap-3">
+                            <div className="text-[13px] font-bold uppercase tracking-wider text-ink-muted">{product.category}</div>
+                            <h1 className="text-[34px] font-extrabold leading-tight">{product.name}</h1>
+                            <div className="text-[26px] font-extrabold text-brand-dark">₹{product.price}</div>
+                            <StockLabel stock={product.stock} />
+                            <p className="max-w-[460px] text-base leading-relaxed text-ink-muted [text-wrap:pretty]">{product.description}</p>
+                            <div className="mt-2 flex max-w-[320px] flex-col gap-2">
+                                <WishlistButton productId={product._id} size="lg" />
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </main>
         </div>
     );
 }

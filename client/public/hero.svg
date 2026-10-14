@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" fill="none">
+  <rect width="640" height="480" rx="20" fill="#e8b96a"/>
+  <circle cx="500" cy="110" r="150" fill="#f0cb8e"/>
+  <circle cx="120" cy="420" r="120" fill="#f0cb8e"/>
+  <ellipse cx="320" cy="425" rx="190" ry="18" fill="#000" opacity=".12"/>
+  <!-- box behind -->
+  <g>
+    <path d="M395 250 L515 250 L515 400 L395 400 Z" fill="#fff4de"/>
+    <path d="M395 250 L455 215 L575 215 L515 250 Z" fill="#fffaf0"/>
+    <path d="M515 250 L575 215 L575 365 L515 400 Z" fill="#ecd9b3"/>
+    <rect x="445" y="250" width="22" height="150" fill="#b8442c" opacity=".85"/>
+  </g>
+  <!-- shopping bag -->
+  <g>
+    <path d="M150 190 H350 L370 410 H130 Z" fill="#b8442c"/>
+    <path d="M150 190 H350 L356 255 H144 Z" fill="#a03a25"/>
+    <path d="M215 190 V165 a35 35 0 0 1 70 0 V190" stroke="#6e2515" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <circle cx="250" cy="300" r="42" fill="#fff4de"/>
+    <path d="M232 300 l14 14 l26 -30" stroke="#b8442c" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- items peeking out -->
+  <rect x="165" y="120" width="26" height="80" rx="13" fill="#2f6f6a" transform="rotate(-14 178 160)"/>
+  <rect x="300" y="125" width="30" height="80" rx="6" fill="#fff4de" transform="rotate(12 315 165)"/>
+  <!-- heart tag -->
+  <g transform="translate(70 90) rotate(-10)">
+    <rect width="92" height="46" rx="23" fill="#fff4de"/>
+    <path d="M46 33 C28 22 30 10 40 10 c4 0 6 3 6 3 s2 -3 6 -3 c10 0 12 12 -6 23z" fill="#b8442c"/>
+  </g>
+  <!-- sparkles -->
+  <path d="M540 90 l7 18 l18 7 l-18 7 l-7 18 l-7 -18 l-18 -7 l18 -7z" fill="#fff4de"/>
+  <path d="M90 300 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4z" fill="#fff4de"/>
+</svg>

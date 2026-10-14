@@ -2,10 +2,15 @@
 
 import api from '../services/api';
 import { Link, useNavigate } from 'react-router-dom';
+// import { useWishlist } from '../context/WishlistContext';
+import { useCart } from '../context/CartContext';
 
 
 function Navbar() {
     const navigate = useNavigate();
+    // const { savedIds } = useWishlist();
+    const { itemCount } = useCart();
+
 
     const handleLogout = async () => {
         await api.post('/customers/logout');
@@ -14,9 +19,9 @@ function Navbar() {
 
     return (
         <header className="sticky top-0 z-10 flex items-center gap-8 border-b border-border-warm bg-cream-light px-12 py-4.5">
-            <span className="text-2xl font-extrabold tracking-tight text-brand-dark">
+            <Link to="/home" className="text-2xl font-extrabold tracking-tight text-brand-dark">
                 shotkart
-            </span>
+            </Link>
 
             <div className="flex max-w-[520px] flex-1 items-center gap-2.5 rounded-[10px] bg-cream px-4 py-2.5">
                 <svg
@@ -41,10 +46,25 @@ function Navbar() {
             <div className="flex-1" />
 
             <div className="flex items-center gap-6">
-                
+
                 <Link to="/products" className="text-sm font-bold text-ink">
                     Products
                 </Link>
+
+                <Link to="/wishlist" className="flex items-center gap-1.5 text-sm font-bold text-ink hover:text-brand-dark">
+                    <span className="text-base text-brand">♥</span>
+                    Wishlist
+                    
+                </Link>
+                <Link to="/cart" className="flex items-center gap-1.5 text-sm font-bold text-ink hover:text-brand-dark">
+                    Cart
+                    {itemCount > 0 && (
+                        <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-dark px-1.5 text-xs text-cream-light">{itemCount}</span>
+                    )}
+                </Link>
+                <Link to="/orders" className="text-sm font-bold text-ink">Orders</Link>
+
+
 
                 <button
                     onClick={handleLogout}
